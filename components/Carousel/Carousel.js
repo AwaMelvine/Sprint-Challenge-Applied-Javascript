@@ -1,9 +1,10 @@
 class Carousel {
   constructor(carouselElement) {
+    this.automatic = true;
     this.carousel = carouselElement;
 
     this.images = this.carousel.querySelectorAll("img");
-    this.currentIndex = 1;
+    this.currentIndex = 0;
 
     this.next = this.carousel.querySelector(".right-button");
     this.prev = this.carousel.querySelector(".left-button");
@@ -12,6 +13,19 @@ class Carousel {
     this.prev.addEventListener("click", () => this.setPreviousImage());
 
     this.setCurrentImage();
+    this.setAutomatic();
+  }
+  setAutomatic() {
+    setInterval(() => {
+      let images = document.querySelectorAll(".carousel img");
+      images.forEach(image => (image.style.opacity = 0));
+
+      this.images.forEach((image, index) => {
+        if (index === this.currentIndex) {
+          image.style.opacity = 1;
+        }
+      });
+    }, 3000);
   }
   setCurrentImage() {
     let images = document.querySelectorAll(".carousel img");
