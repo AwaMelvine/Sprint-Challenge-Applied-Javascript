@@ -15,11 +15,11 @@ class Carousel {
   }
   setCurrentImage() {
     let images = document.querySelectorAll(".carousel img");
-    images.forEach(image => (image.style.display = "none"));
+    images.forEach(image => (image.style.opacity = 0));
 
     this.images.forEach((image, index) => {
       if (index === this.currentIndex) {
-        image.style.display = "flex";
+        image.style.opacity = 1;
       }
     });
   }
